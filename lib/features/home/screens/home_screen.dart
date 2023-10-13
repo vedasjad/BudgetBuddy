@@ -14,7 +14,31 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   PanelController panelController = PanelController();
+
   bool isPanelOpen = false;
+
+  List<Map<String, dynamic>> transactionCards = [
+    {
+      "title": "Expenses",
+      "amount": "1300",
+      "color": Colors.red,
+    },
+    {
+      "title": "Income",
+      "amount": "20000",
+      "color": AppColors.blue,
+    },
+    {
+      "title": "Transfer",
+      "amount": "10000",
+      "color": Colors.cyan,
+    },
+    {
+      "title": "Loan",
+      "amount": "1300",
+      "color": Colors.deepOrange,
+    }
+  ];
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
@@ -114,9 +138,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     physics: const BouncingScrollPhysics(),
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
-                    itemCount: 5,
+                    itemCount: transactionCards.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return const ScrollCardWidget();
+                      return TransactionCardWidget(
+                        title: transactionCards[index]["title"],
+                        amount: transactionCards[index]["amount"],
+                        color: transactionCards[index]["color"],
+                      );
                     },
                   ),
                 ),

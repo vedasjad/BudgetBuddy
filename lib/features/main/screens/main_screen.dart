@@ -1,6 +1,7 @@
 import 'package:budgetbuddy/features/home/screens/home_screen.dart';
 import 'package:budgetbuddy/features/notifications/screens/notifications_screen.dart';
 import 'package:budgetbuddy/features/settings/screens/settings_screen.dart';
+import 'package:budgetbuddy/features/transaction/screens/add_transaction_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/colors.dart';
@@ -83,7 +84,29 @@ class _MainScreenState extends State<MainScreen> {
         ],
       ),
       body: screens[selectedScreenIndex],
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const AddTransactionScreen(),
+            ),
+          );
+        },
+        icon: const Icon(
+          Icons.add,
+        ),
+        label: const Text(
+          "Add Transaction(s)",
+          style: TextStyle(),
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.shifting,
         elevation: 5,
         backgroundColor: Colors.white,
         showUnselectedLabels: false,
